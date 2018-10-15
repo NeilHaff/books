@@ -15,6 +15,7 @@ class App extends Component {
 
 
     render() {
+        console.disableYellowBox = true;
         return (
             <Provider store={store}>
                 <View style={styles.container}>
@@ -37,26 +38,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#796eff',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 60,
-        paddingTop: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         elevation: 2,
         position: 'relative'
     },
+
     textStyle: {
         fontSize: 20,
         color:'white'
     },
-    welcome: {
-        marginTop:20,
-        marginBottom:5,
-        fontSize: 20,
-        color: 'white',
-        textAlign: 'center',
-        margin: 0,
-    },
+
     subtext: {
         textAlign: 'center',
         marginBottom: 5,

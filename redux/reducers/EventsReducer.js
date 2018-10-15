@@ -1,7 +1,7 @@
 import * as types from '../actions/types'
 
 const INITIAL_STATE = {
-    attendance: {}
+    bought: {}
 }
 
 
@@ -10,9 +10,9 @@ const EventsReducer = (state = INITIAL_STATE, action) => {
         case types.TOGGLE_EVENT:
             return {
                 ...state,
-                attendance: {
-                    ...state.attendance,
-                    [action.payload.id]:!state.attendance[action.payload.id]
+                bought: {
+                    ...state.bought,
+                    [action.payload.id]:!state.bought[action.payload.id]
                 }
             }
         default:

@@ -1,18 +1,16 @@
 import React from 'react'
-import { ImageBackground, View, Text } from 'react-native'
+import { View, Text } from 'react-native'
+
+import * as Color from '../../constants/colors'
 
 
 const Heroimage = ({  title }) =>  {
-  const { containerStyle, title1, title2, title3, title4 } = styles
+  const { containerStyle, title1,  } = styles
 
   return (
-    <View style={[containerStyle, style]}>
-      <ImageBackground
-          source={require('../../../assets/bannerblaggs3.png')}
-        style={{width: '100%', height: '100%'}}
-        resizeMode={resizeMode || 'cover'}>
+    <View style={[containerStyle, ]}>
         <Text style={title1} >{title}</Text>
-      </ImageBackground>
+
     </View>
   )
 }
@@ -20,33 +18,23 @@ const Heroimage = ({  title }) =>  {
 const styles = {
   containerStyle: {
     borderWidth: 0,
-    padding: 0,
-    backgroundColor: '#FFF',
-    height:  200,
+    padding: 20,
+    backgroundColor: Color.Yellow,
+    height:  100,
     borderColor: '#add',
     position: 'relative',
-    // textAlign:'left'
+
   },
 
   title1: {
     color: 'white',
     fontSize: 34,
-    marginLeft:15,
-    marginTop:80,
-    textAlign:'left',
+    textAlignVertical: 'center',
+    textAlign:'center',
     fontWeight: 'bold',
     // backgroundColor: 'rgba(52, 52, 52, 0.5)'
   },
 
-  title2: {
-    color: 'white',
-    fontSize: 24,
-    textAlign: 'left',
-    marginLeft:15,
-    textAlignVertical: 'center',
-    fontWeight: 'bold',
-    // backgroundColor: 'rgba(52, 52, 52, 0.5)'
-  },
 
 };
 

@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Text, Image } from 'react-native'
 import Heroimage from '../components/CardComponents/Heroimage'
-import AttendingButtons from '../components/CardComponents/BuyButtons'
-import Main from './Comments'
+import BuyButtons from '../components/CardComponents/BuyButtons'
 
 import { connect } from 'react-redux'
 
@@ -13,35 +12,34 @@ class bookPage extends Component {
     constructor(props) {
         super(props);
         this.isAttending=this.isAttending.bind(this)
-        this.attendingState=this.attendingState.bind(this)
+        this.buyingState=this.buyingState.bind(this)
 
     }
 
     isAttending(){
         return(
-            this.props.attending[this.props.Game.id]
+            this.props.bought[this.props.book.id]
         )
 
     }
 
-    attendingState(){
+    buyingState(){
     if (this.isAttending()) {
         return (
-             <View style={[styles.attending, {backgroundColor: Color.GoGreen,}]}>
-                    <Text style={styles.attendState}>
-                        Great, you're playing
-                    </Text>
-             </View>
+            <View style={[styles.attending, {backgroundColor: 'red'}]}>
+                <Text style={styles.attendState}>
+                    In Basket
+                </Text>
+            </View>
+
         )
     }
 
     else {
         return(
-                <View style={[styles.attending, {backgroundColor: Color.NoRed,}]}>
-                    <Text style={styles.attendState}>
-                        Currently: not attending
-                    </Text>
-                </View>
+            <View>
+
+            </View>
 
         )
     }
@@ -50,53 +48,33 @@ class bookPage extends Component {
 
 
 render(  ) {
-    const { Location, Opponent, Description, Incharge, DateText, FullLocation } = this.props.Game
+    const { title, Description, Img  } = this.props.book
 
         return (
             <ScrollView>
+
                 <Heroimage
-                    Location={Location}
-                    Team={Opponent}
-
+                    title={title}
                 />
-                <AttendingButtons
-                    Game={this.props.Game}
-                />
+                {this.buyingState()}
 
-                <View style={{flexDirection:'row'}}>
-                <Text style={[styles.SubText, {marginTop:10, fontWeight:'bold',  marginLeft:15,}]}>
-                    Date:
-                </Text>
-                    <Text style={[styles.SubText, {marginTop:10}]}>
-                        {DateText}
-                    </Text>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={[styles.SubText, {fontWeight:'bold', marginLeft:15,}]}>
-                        Managing:
-                    </Text>
-                <Text style={styles.SubText }>
-                    {Incharge}
-                </Text>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={[styles.SubText, {marginBottom:20, fontWeight:'bold', marginLeft:15,}]}>
-                        Full Location:
-                    </Text>
-                    <Text style={[styles.SubText, {marginBottom:20}]}>
-                        {FullLocation}
-                    </Text>
-                </View>
-
-                {this.attendingState()}
-
-
-                <View style={styles.paragraph}>
+                <View style={styles.container}>
+                    <Image
+                        source={Img}
+                        // source={require('../../../assets/Mr.Greedy.jpg')}
+                        // style={{width:'100%'}}
+                    />
                     <Text >
                         {Description}
                     </Text>
+
+                    <BuyButtons
+                        book={this.props.book}
+                    />
+
                 </View>
-                <Main/>
+
+
             </ScrollView>
         )
     };
@@ -107,14 +85,14 @@ const styles = {
   container: {
     // padding: 12,
     backgroundColor: '#FFF',
-    justifyItems: 'center'
+    justifyItems: 'center',
+      alignItems:'center',
+      justifyContent:'center',
+      padding: 10 | 10 | 55 | 10,
   },
 
-    attending: {
-        padding: 10,
-        marginBottom: 10,
-        marginRight:10,
-        marginLeft:10
+    button: {
+     justifyContent: 'center',
 
     } ,
 
@@ -144,7 +122,7 @@ const styles = {
 
 const mapStateToProps = (state, props) => {
     return {
-        attending: state.events.attendance
+        bought: state.events.bought
     }
 }
 

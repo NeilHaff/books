@@ -4,7 +4,7 @@ import bookPage from './MainPages/bookPage'
 import BookList from './MainPages/booklistings'
 
 
-import { Scene, Router, Drawer, Stack } from 'react-native-router-flux'
+import { Scene, Router,  Stack } from 'react-native-router-flux'
 
 import * as Color from './constants/colors'
 
@@ -23,10 +23,9 @@ const RouterComponent = () => {
             getSceneStyle={() => sceneStyle()}
             navigationBarStyle={styles.navBar}
             navBarButtonColor='white'
-            backTitle=' '
+            backTitle='Book List'
             back={true}
-            titleStyle={styles.navBarTitle}
-            barButtonTextStyle={styles.barButtonTextStyle}
+            backButtonTextStyle={{color: 'white'}}
         >
 
             <Scene
@@ -35,14 +34,17 @@ const RouterComponent = () => {
                 tabBarPosition='top'
                 labelStyle={{color: '#FFF', fontSize:15}}
                 indicatorStyle={{backgroundColor: 'white'}}
-                tabBarStyle={{backgroundColor: Color.Purple, elevation: 0, borderTopWidth:0.6, borderTopColor:'white', height:40}}
+                tabBarStyle={{backgroundColor: Color.Blue, elevation: 0, borderTopWidth:0.2, borderTopColor:'white'}}
             >
 
                 <Stack key="Books"  >
                     <Scene key='BookList' component={BookList} initial  hideNavBar />
-                    <Scene key='bookPage' component={bookPage}  />
+                    <Scene
+                        key='bookPage'
+                        component={bookPage}
+                        backButtonTextStyle={{color: 'white'}}
+                    />
                 </Stack>
-
 
             </Scene>
 
@@ -53,19 +55,17 @@ const RouterComponent = () => {
 
 const styles = {
     navBar: {
- backgroundColor:Color.Purple,
- // marginTop: -20,
- paddingBottom: 6,
- paddingLeft: 6,
+         backgroundColor:Color.Blue,
+        paddingBottom: 6,
+        paddingLeft: 6,
+        paddingTop:5,
     },
 
-   navBarTitle: {
-    color:'white',
-    fontSize: 15,
-},
-   barButtonTextStyle: {
-   color:'#FFFFFF'
-   }
+    navBarTitle: {
+       color: 'white',
+    },
+
+
 }
 
 
